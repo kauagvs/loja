@@ -1,4 +1,7 @@
-
+<?php  
+	error_reporting(E_ALL ^ E_NOTICE);
+	require_once('alerta_base.php');
+?>
 
 <html>
 
@@ -24,6 +27,7 @@
 	                <ul class="nav navbar-nav">
 	                    <li><a href="produto-formulario.php">Adiciona Produto</a></li>
 	                    <li><a href="produto-lista.php">Lista de Produtos</a></li>
+                     	<li><a href="contato.php">Contato</a></li>
 	                </ul>
 	            </div>
 	        </div> 
@@ -32,3 +36,8 @@
 	    <div class="container">
 
 	    <div class="principal">
+
+<?php  
+	mostrar_alerta("success");
+	mostrar_alerta("danger");
+?>

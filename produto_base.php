@@ -1,5 +1,7 @@
 <?php  
 
+	require_once("conecta.php");
+
 	function listar_cadastros($conexao){
 
 		$produtos = [];
@@ -12,6 +14,10 @@
 	}
 
 	function adicionar_cadastro($conexao, $nome, $preco, $descricao, $id_categoria, $usado) {
+		$nome = mysqli_real_escape_string($conexao, $nome);
+		$preco = mysqli_real_escape_string($conexao, $preco);
+		$descricao = mysqli_real_escape_string($conexao, $descricao);
+
 		$query = "insert into produtos (nome, preco, descricao, id_categoria, usado) values ('{$nome}' , '{$preco}', '{$descricao}', '{$id_categoria}', {$usado})";
 		return mysqli_query($conexao, $query);
 	}
@@ -23,6 +29,10 @@
 	}
 
 	function editar_cadastro($conexao, $id, $nome, $preco, $descricao, $id_categoria, $usado){
+		$nome = mysqli_real_escape_string($conexao, $nome);
+		$preco = mysqli_real_escape_string($conexao, $preco);
+		$descricao = mysqli_real_escape_string($conexao, $descricao);
+		
 		$query = "update produtos set nome='{$nome}', preco='{$preco}', descricao='{$descricao}', id_categoria='{$id_categoria}', usado='{$usado}' where id = '{$id}'";
 		return mysqli_query($conexao, $query);
 	}

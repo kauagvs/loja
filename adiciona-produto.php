@@ -1,8 +1,9 @@
 <?php 
 
-	include("cabecalho.php");
-	include("conecta.php");
-	include("produto_base.php");
+	require_once("cabecalho.php");
+	require_once("produto_base.php");
+	require_once('usuario_base.php');
+	verifica_usuario();
 
 	$nome = $_POST['nome'];
 	$preco = $_POST['preco'];
@@ -26,7 +27,7 @@
 <?php
 }
 
-include('rodape.php'); 
+require_once('rodape.php'); 
 
 ?>
 

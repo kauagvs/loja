@@ -1,8 +1,7 @@
 <?php 
 
-	include("cabecalho.php");
-	include("conecta.php");
-	include("produto_base.php");
+	require_once("cabecalho.php");
+	require_once("produto_base.php");
 
 	$id = $_POST['id'];
 	$nome = $_POST['nome'];
@@ -27,7 +26,7 @@
 <?php
 }
 
-include('rodape.php'); 
+require_once('rodape.php'); 
 
 ?>
 
