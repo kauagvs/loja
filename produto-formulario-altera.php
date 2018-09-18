@@ -1,41 +1,40 @@
-
-
 <?php 
 
-	require_once('cabecalho.php');
-	require_once('categoria_base.php');
-	require_once('produto_base.php');
+	require_once("cabecalho.php");
+	require_once("categoria_base.php");
+	require_once("produto_base.php");
+	require_once("class/Produto.php");
 
 	$id = $_GET['id'];
-
-	$categorias = listar_categorias($conexao);
 	$produto = carregar_editar_cadastro($conexao, $id);
+	$categorias = listar_categorias($conexao);
 
-	$usado = $produto['usado'] ? "checked='checked'" : "";
-	$categoria = $produto['id_categoria'] ? "checked='checked'" : "";
+	$usado = $produto->getUsado() ? "checked='checked'" : "";
+	$produto->setUsado($usado); 
+
 ?>
 		
-		<center><h1>Formulário de Cadastro</h1></center>
-		<br>
+	<center><h1>Formulário de Alteração</h1></center>
+	<br>
 
-		<form action="altera-produto.php" method="POST">
+	<form action="altera-produto.php" method="POST">
 
-			<input type="hidden" name="id" value="<?=$produto['id']?>">
+		<input type="hidden" name="id" value="<?=$produto->getId()?>">
 
-			<table class="table">
+		<table class="table">
 
-				<?php include('formulario-padrao.php'); ?>
+			<?php include('formulario-padrao.php'); ?>
 
-				<tr>
-					<td><input class="btn btn-primary" type="submit" value="Alterar" /></td>
-				</tr>
+			<tr>
+				<td><input class="btn btn-primary" type="submit" value="Alterar" /></td>
+			</tr>
 
-			</table>				
+		</table>				
 
-			<br><br>
+		<br><br>
 
-			
+		
 
-		</form>
+	</form>
 
 <?php require_once('rodape.php') ?>

@@ -2,13 +2,19 @@
 
 <?php 
 
-	require_once('cabecalho.php');
-	require_once('categoria_base.php');
-	require_once('usuario_base.php');
-	verifica_usuario();
+	require_once("cabecalho.php");
+	require_once("categoria_base.php");
+	require_once("class/Produto.php");
+	require_once("class/Categoria.php");
+	require_once("usuario_base.php");
+	
 
-	$produto = array("nome" => "", "descricao" => "", "preco" => "", "id_categoria" => "1");
-	$usado = "";
+	verifica_usuario();
+	
+	$categoria = new Categoria();
+	$categoria->setId(1) ;
+
+	$produto = new Produto("", "", "", $categoria, "");
 
 	$categorias = listar_categorias($conexao);
 
