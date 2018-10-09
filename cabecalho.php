@@ -1,6 +1,11 @@
 <?php  
+	spl_autoload_register(function ($classe){
+		require_once("class/" . $classe . ".php");
+	});
+
 	error_reporting(E_ALL ^ E_NOTICE);
 	require_once('alerta_base.php');
+	require_once('conecta.php');
 ?>
 
 <html>

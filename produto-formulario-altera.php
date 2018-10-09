@@ -1,13 +1,13 @@
 <?php 
 
 	require_once("cabecalho.php");
-	require_once("categoria_base.php");
-	require_once("produto_base.php");
-	require_once("class/Produto.php");
 
 	$id = $_GET['id'];
-	$produto = carregar_editar_cadastro($conexao, $id);
-	$categorias = listar_categorias($conexao);
+	$produto_dao = new ProdutoDao($conexao);
+	$produto = $produto_dao->carregar_editar_cadastro($id);
+
+	$categoria_dao = new CategoriaDao($conexao);
+	$categorias = $categoria_dao->listar_categorias();
 
 	$usado = $produto->getUsado() ? "checked='checked'" : "";
 	$produto->setUsado($usado); 

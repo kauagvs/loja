@@ -1,14 +1,15 @@
-<?php  
+<?php
 
 	class Produto {
+
 		private $id;
 		private $nome;
 		private $preco;
 		private $descricao;
-		public $categoria;
+		private $categoria;
 		private $usado;
 
-		public function __construct($nome, $preco, $descricao, Categoria $categoria, $usado){ 
+		public function __construct($nome, $preco, $descricao, Categoria $categoria, $usado){
 			$this->nome = $nome;
 			$this->preco = $preco;
 			$this->descricao = $descricao;
@@ -56,9 +57,37 @@
 			return $this->preco;
 		}
 
-	    function __toString() {
-	        return $this->nome.": R$ ".$this->preco;
-	    }
+		public function possuiIsbn(){
+			return $this instanceof Livro;
+		}
+
+		public function possuiImpressao(){
+			return $this instanceof LivroFisico;
+		}
+
+		public function possuiWaterMark(){
+			return $this instanceof Ebook;
+		}
+
+		public function atribuidoEm($params){
+			if ($this->possuiIsbn()) {
+				$this->setIsbn($params['isbn']);
+			}
+			if ($this->possuiImpressao()) {
+				$this->setImpressao($params['impressao']);
+			}
+			if ($this->possuiWaterMark()) {
+				$this->setWaterMark($params['water_mark']);
+			}
+		}
+
+		public function impostoProduto($valor = 0.195){
+			return $this->preco * $valor;
+		}
+
+    function __toString() {
+        return $this->nome.": R$ ".$this->preco;
+    }
 
 	}
 

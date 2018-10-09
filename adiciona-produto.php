@@ -1,25 +1,27 @@
-<?php 
+<?php
 
 	require_once("cabecalho.php");
-	require_once("class/Produto.php");
-	require_once("class/Categoria.php");
-	require_once("produto_base.php");
 	require_once("usuario_base.php");
 	verifica_usuario();
 
-	
-	$categoria = new Categoria();
-	$categoria->setId($_POST['id_categoria']);
+	$tipo_produto = $_POST['tipo_produto'];
+	$categoria_id = $_POST['id_categoria'];
 
-	$nome = $_POST['nome'];
-	$preco = $_POST['preco'];
-	$descricao = $_POST['descricao'];
-	$categoria = $categoria;
-	$usado = array_key_exists('usado', $_POST) ? "true" : "false";
+	$factory_produto = new ProdutoFactory();
+	$produto = $factory_produto->validar_tipo($tipo_produto, $_POST);
+	$produto->atribuidoEm($_POST);
 
-	$produto = new Produto($nome, $preco, $descricao, $categoria, $usado);
+	$produto->getCategoria()->setId($categoria_id);
 
-	if(adicionar_cadastro($conexao, $produto)) {
+	if (array_key_exists('usado', $_POST)) {
+		$produto->setUsado("True");
+	}else {
+		$produto->setUsado("False");
+	}
+
+	$produto_dao = new ProdutoDao($conexao);
+
+	if($produto_dao->adicionar_cadastro($produto)) {
 ?>
 
 <p class="alert-success">Produto <?= $produto->getNome(); ?>, <?=$produto->getPreco();?> adicionado com sucesso!</p>
@@ -34,11 +36,6 @@
 <?php
 }
 
-require_once('rodape.php'); 
+require_once('rodape.php');
 
 ?>
-
-	
-
-	
-	
