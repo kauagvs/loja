@@ -1,6 +1,6 @@
 <?php
 
-	class Produto {
+	abstract class Produto {
 
 		private $id;
 		private $nome;
@@ -69,17 +69,7 @@
 			return $this instanceof Ebook;
 		}
 
-		public function atribuidoEm($params){
-			if ($this->possuiIsbn()) {
-				$this->setIsbn($params['isbn']);
-			}
-			if ($this->possuiImpressao()) {
-				$this->setImpressao($params['impressao']);
-			}
-			if ($this->possuiWaterMark()) {
-				$this->setWaterMark($params['water_mark']);
-			}
-		}
+		abstract public function atribuidoEm($params);
 
 		public function impostoProduto($valor = 0.195){
 			return $this->preco * $valor;

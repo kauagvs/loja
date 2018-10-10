@@ -2,7 +2,7 @@
 
 class ProdutoFactory {
 
-  private $classes = array("Produto", "Ebook", "LivroFisico");
+  private $classes = array("Ebook", "LivroFisico");
 
   public function validar_tipo($tipo_produto, $params) {
     $nome = $params['nome'];
@@ -15,7 +15,7 @@ class ProdutoFactory {
         return new $tipo_produto($nome, $preco, $descricao, $categoria, $usado);
     }
 
-    return new Produto($nome, $preco, $descricao, $categoria, $usado);
+    return new LivroFisico($nome, $preco, $descricao, $categoria, $usado);
   }
 }
 

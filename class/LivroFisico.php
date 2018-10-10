@@ -13,6 +13,11 @@ class LivroFisico extends Livro
     $this->impressao = $impressao;
   }
 
+  public function atribuidoEm($params) {
+    $this->setIsbn($params["isbn"]);
+    $this->setImpressao($params["taxa_impressao"]);
+  }
+
 }
 
 ?>

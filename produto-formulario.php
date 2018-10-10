@@ -1,23 +1,23 @@
 
 
-<?php 
+<?php
 
 	require_once("cabecalho.php");
 	require_once("categoria_base.php");
 	require_once("usuario_base.php");
-	
+
 
 	verifica_usuario();
-	
+
 	$categoria = new Categoria();
 	$categoria->setId(1) ;
 
-	$produto = new Produto("", "", "", $categoria, "");
+	$produto = new LivroFisico("", "", "", $categoria, "");
 
 	$categorias = listar_categorias($conexao);
 
 ?>
-		
+
 		<center><h1>Formulário de Cadastro</h1></center>
 		<br>
 
@@ -31,11 +31,11 @@
 					<td><input class="btn btn-primary" type="submit" value="Cadastrar" /></td>
 				</tr>
 
-			</table>				
+			</table>
 
 			<br><br>
 
-			
+
 
 		</form>
 
